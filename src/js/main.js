@@ -1,4 +1,6 @@
 import modals from './modules/modals';
+import sliders from './modules/sliders';
+import forms from './modules/forms';
 
 window.addEventListener('DOMContentLoaded', () => {
 	"use strict";
@@ -12,6 +14,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	// changeModalState(modalState);
 	modals();
+	sliders('.main-slider-item', 'vertical');
+	sliders('.feedback-slider-item', 'horizontal', '.main-prev-btn', '.main-next-btn');
+	forms();
 	// tabs('.glazing_slider', '.glazing_block', '.glazing_content', 'activ');
 	// tabs('.decoration_slider', '.no_click', '.decoration_content > div > div', 'after_click');
 	// tabs('.balcon_icons', '.balcon_icons_img', '.big_img > img', 'do_image_more', 'inline-block');
