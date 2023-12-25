@@ -3,6 +3,7 @@ import sliders from './modules/sliders';
 import forms from './modules/forms';
 import mask from './modules/mask';
 import checkTextInputs from './modules/checkTextInputs';
+import showMoreStyles from './modules/showMoreStyles';
 
 window.addEventListener('DOMContentLoaded', () => {
 	"use strict";
@@ -22,6 +23,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	mask('[name="phone"]');
 	checkTextInputs('[name="name"]');
 	checkTextInputs('[name="message"]');
+	showMoreStyles('.button-styles', '.styles-2');
 	// tabs('.glazing_slider', '.glazing_block', '.glazing_content', 'activ');
 	// tabs('.decoration_slider', '.no_click', '.decoration_content > div > div', 'after_click');
 	// tabs('.balcon_icons', '.balcon_icons_img', '.big_img > img', 'do_image_more', 'inline-block');
