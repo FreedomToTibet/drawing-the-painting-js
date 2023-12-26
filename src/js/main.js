@@ -4,18 +4,12 @@ import forms from './modules/forms';
 import mask from './modules/mask';
 import checkTextInputs from './modules/checkTextInputs';
 import showMoreStyles from './modules/showMoreStyles';
+import calculater from './modules/calculater';
+import filter from './modules/filter';
 
 window.addEventListener('DOMContentLoaded', () => {
 	"use strict";
 
-	// let modalState = {
-	// 	form: 0,
-	// 	type: "Cold"
-	// };
-
-	// let deadline = '2024-01-15';
-
-	// changeModalState(modalState);
 	modals();
 	sliders('.main-slider-item', 'vertical');
 	sliders('.feedback-slider-item', 'horizontal', '.main-prev-btn', '.main-next-btn');
@@ -23,11 +17,8 @@ window.addEventListener('DOMContentLoaded', () => {
 	mask('[name="phone"]');
 	checkTextInputs('[name="name"]');
 	checkTextInputs('[name="message"]');
-	showMoreStyles('.button-styles', '.styles-2');
-	// tabs('.glazing_slider', '.glazing_block', '.glazing_content', 'activ');
-	// tabs('.decoration_slider', '.no_click', '.decoration_content > div > div', 'after_click');
-	// tabs('.balcon_icons', '.balcon_icons_img', '.big_img > img', 'do_image_more', 'inline-block');
-	// forms(modalState);
-	// timer('.container1', deadline);
-	// images();
+	showMoreStyles('.button-styles', '#styles .row');
+	calculater('#size', '#material', '#options', '.promocode', '.calc-price');
+	filter();
+
 });
