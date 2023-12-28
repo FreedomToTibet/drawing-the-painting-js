@@ -8,6 +8,7 @@ import calculater from './modules/calculater';
 import filter from './modules/filter';
 import pictureSize from './modules/pictureSize';
 import collaps from './modules/collaps';
+import burger from './modules/burger';
 
 window.addEventListener('DOMContentLoaded', () => {
 	"use strict";
@@ -24,4 +25,5 @@ window.addEventListener('DOMContentLoaded', () => {
 	filter();
 	pictureSize('.sizes-block');
 	collaps('.accordion-heading', '.accordion-block');
+	burger('.burger-menu', '.burger');
 });
