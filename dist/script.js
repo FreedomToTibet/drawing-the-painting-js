@@ -134,6 +134,62 @@ const collaps = (triggerSelector, itemSelector) => {
 
 /***/ }),
 
+/***/ "./src/js/modules/drugAndDrop.js":
+/*!***************************************!*\
+  !*** ./src/js/modules/drugAndDrop.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+const dragAndDrop = () => {
+  const fileInputs = document.querySelectorAll('[name="upload"]');
+  ['dragenter', 'dragleave', 'dragover', 'drop'].forEach(eventName => {
+    fileInputs.forEach(input => {
+      input.addEventListener(eventName, preventDefaults, false);
+    });
+  });
+  function preventDefaults(e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+  function highlight(item) {
+    item.closest('.file_upload').style.border = '5px solid yellow';
+    item.closest('.file_upload').style.backgroundColor = 'rgba(0,0,0, .7)';
+  }
+  function unhighlight(item) {
+    item.closest('.file_upload').style.border = 'none';
+    if (item.closest('.calc_form')) {
+      item.closest('.file_upload').style.backgroundColor = '#fff';
+    } else {
+      item.closest('.file_upload').style.backgroundColor = '#ededed';
+    }
+  }
+  ['dragenter', 'dragover'].forEach(eventName => {
+    fileInputs.forEach(input => {
+      input.addEventListener(eventName, () => highlight(input), false);
+    });
+  });
+  ['dragleave', 'drop'].forEach(eventName => {
+    fileInputs.forEach(input => {
+      input.addEventListener(eventName, () => unhighlight(input), false);
+    });
+  });
+  fileInputs.forEach(input => {
+    input.addEventListener('drop', e => {
+      input.files = e.dataTransfer.files;
+      const dots = input.files[0].name.split('.')[0].length > 6 ? '...' : '.';
+      const name = input.files[0].name.split('.')[0].substring(0, 6) + dots + input.files[0].name.split('.')[1];
+      input.previousElementSibling.textContent = name;
+    });
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (dragAndDrop);
+
+/***/ }),
+
 /***/ "./src/js/modules/filter.js":
 /*!**********************************!*\
   !*** ./src/js/modules/filter.js ***!
@@ -770,6 +826,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_collaps__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/collaps */ "./src/js/modules/collaps.js");
 /* harmony import */ var _modules_burger__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/burger */ "./src/js/modules/burger.js");
 /* harmony import */ var _modules_scrolling__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./modules/scrolling */ "./src/js/modules/scrolling.js");
+/* harmony import */ var _modules_drugAndDrop__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./modules/drugAndDrop */ "./src/js/modules/drugAndDrop.js");
+
 
 
 
@@ -799,6 +857,7 @@ window.addEventListener('DOMContentLoaded', () => {
   (0,_modules_collaps__WEBPACK_IMPORTED_MODULE_9__["default"])('.accordion-heading', '.accordion-block');
   (0,_modules_burger__WEBPACK_IMPORTED_MODULE_10__["default"])('.burger-menu', '.burger');
   (0,_modules_scrolling__WEBPACK_IMPORTED_MODULE_11__["default"])();
+  (0,_modules_drugAndDrop__WEBPACK_IMPORTED_MODULE_12__["default"])();
 });
 })();
 

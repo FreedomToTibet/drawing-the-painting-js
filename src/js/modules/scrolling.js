@@ -2,12 +2,12 @@ const scrolling = () => {
 	window.addEventListener('scroll', () => {
 		if (document.documentElement.scrollTop > 1650) {
 			document.querySelector('.pageup').style.opacity = '1';
-			document.querySelector('.pageup').addClass.add('animated', 'fadeIn');
-			document.querySelector('.pageup').addClass.remove('fadeOut');
+			document.querySelector('.pageup').classList.add('animated', 'fadeIn');
+			document.querySelector('.pageup').classList.remove('fadeOut');
 		} else {
 			document.querySelector('.pageup').style.opacity = '0';
-			document.querySelector('.pageup').addClass.add('fadeOut');
-			document.querySelector('.pageup').addClass.remove('fadeIn');
+			document.querySelector('.pageup').classList.add('animated','fadeOut');
+			document.querySelector('.pageup').classList.remove('fadeIn');
 		}
 	});
 

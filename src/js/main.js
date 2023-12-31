@@ -10,6 +10,7 @@ import pictureSize from './modules/pictureSize';
 import collaps from './modules/collaps';
 import burger from './modules/burger';
 import scrolling from './modules/scrolling';
+import dragAndDrop from './modules/drugAndDrop';
 
 window.addEventListener('DOMContentLoaded', () => {
 	"use strict";
@@ -28,4 +29,5 @@ window.addEventListener('DOMContentLoaded', () => {
 	collaps('.accordion-heading', '.accordion-block');
 	burger('.burger-menu', '.burger');
 	scrolling();
+	dragAndDrop();
 });
