@@ -23,5 +23,13 @@
 		"gulp": "^4.0.2",
 		"webpack": "^5.86.0",
 		"webpack-stream": "^7.0.0"
+	},
+	"dependencies": {
+		"autoprefixer": "^10.4.19",
+		"gulp-concat": "^2.6.1",
+		"gulp-csso": "^4.0.1",
+		"gulp-htmlmin": "^5.0.1",
+		"gulp-postcss": "^10.0.0",
+		"gulp-sourcemaps": "^3.0.0"
 	}
 }

@@ -3,8 +3,14 @@ import {postData} from '../services/requests';
 const forms = () => {
 	const form = document.querySelectorAll('form');
 	const input = document.querySelectorAll('input');
+	const comment = document.querySelectorAll('textarea');
 	const phoneInputs = document.querySelectorAll('input[name="user_phone"]');
 	const upload = document.querySelectorAll('[name="upload"]');
+	const resultBlock = document.querySelector('.calc-price');
+	const sizeBlock = document.querySelector('#size');
+	const materialBlock = document.querySelector('#material');
+	const optionsBlock = document.querySelector('#options');
+	const promocodeBlock = document.querySelector('.promocode');
 
 
 	const message = {
@@ -19,6 +25,8 @@ const forms = () => {
 	const path = {
 		designer: 'assets/server.php',
 		question: 'assets/question.php'
+		// designer: "https://66163e62b8b8e32ffc7ccc7b.mockapi.io/api/painting/desig-req",
+		// question: "https://66163e62b8b8e32ffc7ccc7b.mockapi.io/api/painting/quest-req",
 	};
 
 	const clearInputs = () => {
@@ -28,7 +36,22 @@ const forms = () => {
 		upload.forEach(item => {
 			item.previousElementSibling.textContent = 'Load file';
 		});
+		try {
+			resultBlock.textContent = '';
+			console.log(sizeBlock.querySelectorAll('option')[0]);
+			sizeBlock.querySelectorAll('option')[0].selected = true;
+			materialBlock.querySelectorAll('option')[0].selected = true;
+			optionsBlock.querySelectorAll('option')[0].selected = true;
+			promocodeBlock = '';
+		} catch (e) {}
 	};
+
+	const clearComments = () => {
+		comment.forEach(element => {
+			element.value = '';
+		});
+	};
+
 
 	phoneInputs.forEach(item => {
 		item.addEventListener('input', () => {
@@ -72,9 +95,12 @@ const forms = () => {
 
 			let api;
 			item.closest('.popup-design') || item.classList.contains('calc_form') ? api = path.designer : api = path.question;
-			console.log(api);
+
+			// const formJson = JSON.stringify(Object.fromEntries(formData.entries()));
+			// console.log(formJson);
 
 			postData(api, formData)
+			// postData(api, formJson)
 				.then(result => {
 					console.log(result);
 					statusImg.setAttribute('src', message.ok);
@@ -86,6 +112,7 @@ const forms = () => {
 				})
 				.finally(() => {
 					clearInputs();
+					clearComments();
 					setTimeout(() => {
 						statusMessage.remove();
 						item.style.display = 'block';

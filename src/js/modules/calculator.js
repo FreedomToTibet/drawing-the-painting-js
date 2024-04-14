@@ -1,4 +1,4 @@
-const calculater = (size, material, options, promocode, result) => {
+const calculator = (size, material, options, promocode, result) => {
 	const sizeBlock = document.querySelector(size);
 	const materialBlock = document.querySelector(material);
 	const optionsBlock = document.querySelector(options);
@@ -25,4 +25,4 @@ const calculater = (size, material, options, promocode, result) => {
 	promocodeBlock.addEventListener('input', calcFunc);
 };
 
-export default calculater;
+export default calculator;

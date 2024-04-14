@@ -36,8 +36,7 @@ const sliders = (slides, direction, prev, next) => {
 					items[slideIndex - 1].classList.remove('slideInRight');
 					items[slideIndex - 1].classList.add('slideInLeft');
 			});
-					// items[slideIndex - 1].classList.remove('slideInLeft');
-					// items[slideIndex - 1].classList.add('slideInRight');
+			
 			nextBtn.addEventListener('click', () => {
 				plusSlides(1);
 				items[slideIndex - 1].classList.remove('slideInLeft');
@@ -51,7 +50,8 @@ const sliders = (slides, direction, prev, next) => {
 								plusSlides(1);
 								items[slideIndex - 1].classList.add('slideInDown');
 						}, 3000);
-				} else {
+				} 
+				else {
 						paused = setInterval(function () {
 								plusSlides(1);
 								items[slideIndex - 1].classList.remove('slideInLeft');

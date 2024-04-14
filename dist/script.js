@@ -35,9 +35,9 @@ const burger = (menuSelector, burgerSelector) => {
 
 /***/ }),
 
-/***/ "./src/js/modules/calculater.js":
+/***/ "./src/js/modules/calculator.js":
 /*!**************************************!*\
-  !*** ./src/js/modules/calculater.js ***!
+  !*** ./src/js/modules/calculator.js ***!
   \**************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-const calculater = (size, material, options, promocode, result) => {
+const calculator = (size, material, options, promocode, result) => {
   const sizeBlock = document.querySelector(size);
   const materialBlock = document.querySelector(material);
   const optionsBlock = document.querySelector(options);
@@ -67,7 +67,7 @@ const calculater = (size, material, options, promocode, result) => {
   optionsBlock.addEventListener('change', calcFunc);
   promocodeBlock.addEventListener('input', calcFunc);
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (calculater);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (calculator);
 
 /***/ }),
 
@@ -257,8 +257,14 @@ __webpack_require__.r(__webpack_exports__);
 const forms = () => {
   const form = document.querySelectorAll('form');
   const input = document.querySelectorAll('input');
+  const comment = document.querySelectorAll('textarea');
   const phoneInputs = document.querySelectorAll('input[name="user_phone"]');
   const upload = document.querySelectorAll('[name="upload"]');
+  const resultBlock = document.querySelector('.calc-price');
+  const sizeBlock = document.querySelector('#size');
+  const materialBlock = document.querySelector('#material');
+  const optionsBlock = document.querySelector('#options');
+  const promocodeBlock = document.querySelector('.promocode');
   const message = {
     loading: 'Loading...',
     success: 'Thank you! Waiting for callback soon.',
@@ -270,6 +276,8 @@ const forms = () => {
   const path = {
     designer: 'assets/server.php',
     question: 'assets/question.php'
+    // designer: "https://66163e62b8b8e32ffc7ccc7b.mockapi.io/api/painting/desig-req",
+    // question: "https://66163e62b8b8e32ffc7ccc7b.mockapi.io/api/painting/quest-req",
   };
   const clearInputs = () => {
     input.forEach(element => {
@@ -277,6 +285,19 @@ const forms = () => {
     });
     upload.forEach(item => {
       item.previousElementSibling.textContent = 'Load file';
+    });
+    try {
+      resultBlock.textContent = '';
+      console.log(sizeBlock.querySelectorAll('option')[0]);
+      sizeBlock.querySelectorAll('option')[0].selected = true;
+      materialBlock.querySelectorAll('option')[0].selected = true;
+      optionsBlock.querySelectorAll('option')[0].selected = true;
+      promocodeBlock = '';
+    } catch (e) {}
+  };
+  const clearComments = () => {
+    comment.forEach(element => {
+      element.value = '';
     });
   };
   phoneInputs.forEach(item => {
@@ -313,8 +334,13 @@ const forms = () => {
       const formData = new FormData(item);
       let api;
       item.closest('.popup-design') || item.classList.contains('calc_form') ? api = path.designer : api = path.question;
-      console.log(api);
-      (0,_services_requests__WEBPACK_IMPORTED_MODULE_0__.postData)(api, formData).then(result => {
+
+      // const formJson = JSON.stringify(Object.fromEntries(formData.entries()));
+      // console.log(formJson);
+
+      (0,_services_requests__WEBPACK_IMPORTED_MODULE_0__.postData)(api, formData)
+      // postData(api, formJson)
+      .then(result => {
         console.log(result);
         statusImg.setAttribute('src', message.ok);
         textMessage.textContent = message.success;
@@ -323,6 +349,7 @@ const forms = () => {
         textMessage.textContent = message.failing;
       }).finally(() => {
         clearInputs();
+        clearComments();
         setTimeout(() => {
           statusMessage.remove();
           item.style.display = 'block';
@@ -489,8 +516,7 @@ const modals = () => {
   bindModal('.button-consultation', '.popup-consultation', '.popup-consultation .popup-close');
   bindModal('.fixed-gift', '.popup-gift', '.popup-gift .popup-close', true);
   openByScroll('.fixed-gift');
-
-  // showModalByTime('.popup-consultation', 60000);
+  showModalByTime('.popup-consultation', 60000);
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (modals);
 
@@ -553,12 +579,12 @@ const scrolling = () => {
   window.addEventListener('scroll', () => {
     if (document.documentElement.scrollTop > 1650) {
       document.querySelector('.pageup').style.opacity = '1';
-      document.querySelector('.pageup').addClass.add('animated', 'fadeIn');
-      document.querySelector('.pageup').addClass.remove('fadeOut');
+      document.querySelector('.pageup').classList.add('animated', 'fadeIn');
+      document.querySelector('.pageup').classList.remove('fadeOut');
     } else {
       document.querySelector('.pageup').style.opacity = '0';
-      document.querySelector('.pageup').addClass.add('fadeOut');
-      document.querySelector('.pageup').addClass.remove('fadeIn');
+      document.querySelector('.pageup').classList.add('animated', 'fadeOut');
+      document.querySelector('.pageup').classList.remove('fadeIn');
     }
   });
 
@@ -604,23 +630,46 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _services_requests__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/requests */ "./src/js/services/requests.js");
+// we render all images at once
+// import {getData} from '../services/requests';
+
+// const showMoreStyles = (trigger, wrapper) => {
+// 	const btn = document.querySelector(trigger);
+// 	function createCards (response) {
+// 		response.forEach(({src, title, link}) => {
+// 			let card = document.createElement('div');
+// 			card.classList.add('animated', 'fadeInUp', 'col-sm-3', 'col-sm-offset-0', 'col-xs-10', 'col-xs-offset-1');
+
+// 			card.innerHTML = `
+// 				<div class="styles-block">
+// 					<img src=${src} alt="style">
+// 					<h4>${title}</h4>
+// 					<a href=${link}>Details</a>
+// 				</div>
+// 			`;
+
+// 			document.querySelector(wrapper).appendChild(card);
+// 		});
+// 	};
+
+// 	btn.addEventListener('click', function() {
+// 		getData('https://66163e62b8b8e32ffc7ccc7b.mockapi.io/api/painting/styles')
+// 			.then(result => createCards(result))
+// 			.catch(error => console.log(error));
+
+// 		this.remove();
+// 	});
+// };
+
+// export default showMoreStyles;
+
+// we render 4 images at a time
 
 const showMoreStyles = (trigger, wrapper) => {
   const btn = document.querySelector(trigger);
-
-  // cards.forEach(card => {
-  // 	card.classList.add('animated', 'fadeInUp');
-  // });
-
-  // btn.addEventListener('click', () => {
-  // 	cards.forEach(card => {
-  // 		card.classList.remove('hidden-lg', 'hidden-md', 'hidden-sm', 'hidden-xs');
-  // 		card.classList.add('col-sm-3', 'col-sm-offset-0', 'col-xs-10', 'col-xs-offset-1');
-  // 	});
-
-  // 	btn.remove();
-  // });
-
+  let remainingData = [];
+  let currentIndex = 0;
+  const batchSize = 4;
   function createCards(response) {
     response.forEach(({
       src,
@@ -628,24 +677,80 @@ const showMoreStyles = (trigger, wrapper) => {
       link
     }) => {
       let card = document.createElement('div');
-      card.classList.add('animated', 'fadeInUp', 'col-sm-3', 'col-sm-offset-0', 'col-xs-10', 'col-xs-offset-1');
+      card.classList.add('animated', 'fadeInUp', 'styles-block');
       card.innerHTML = `
-				<div class="styles-block">
-					<img src=${src} alt="style">
-					<h4>${title}</h4>
-					<a href=${link}>Details</a>
-				</div>
-			`;
+                    <img src=${src} alt="style">
+                    <h4>${title}</h4>
+                    <a href=${link}>Details</a>
+            `;
       document.querySelector(wrapper).appendChild(card);
     });
   }
   ;
+  function renderNextBatch() {
+    const nextBatch = remainingData.slice(currentIndex, currentIndex + batchSize);
+    createCards(nextBatch);
+    currentIndex += batchSize;
+    if (currentIndex >= remainingData.length) {
+      btn.remove();
+    }
+  }
   btn.addEventListener('click', function () {
-    (0,_services_requests__WEBPACK_IMPORTED_MODULE_0__.getData)('http://localhost:3000/styles').then(result => createCards(result)).catch(error => console.log(error));
-    this.remove();
+    if (remainingData.length === 0) {
+      (0,_services_requests__WEBPACK_IMPORTED_MODULE_0__.getData)('https://66163e62b8b8e32ffc7ccc7b.mockapi.io/api/painting/styles').then(result => {
+        remainingData = result;
+        renderNextBatch();
+      }).catch(error => console.log(error));
+    } else {
+      renderNextBatch();
+    }
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (showMoreStyles);
+
+// we render 4 images at a time and we use the shift method to remove the first 4 elements from the array
+// import {getData} from '../services/requests';
+
+// const showMoreStyles = (trigger, wrapper) => {
+// 	const btn = document.querySelector(trigger);
+// 	let data = [];
+
+// 	function createCards () {
+// 		for(let i = 0; i < 4; i++) {
+// 			if(data.length === 0) {
+// 				btn.remove();
+// 				break;
+// 			}
+
+// 			const {src, title, link} = data.shift();
+// 			let card = document.createElement('div');
+// 			card.classList.add('animated', 'fadeInUp', 'styles-block');
+
+// 			card.innerHTML = `
+// 					<img src=${src} alt="style">
+// 					<h4>${title}</h4>
+// 					<a href=${link}>Details</a>
+// 			`;
+
+// 			document.querySelector(wrapper).appendChild(card);
+// 		}
+// 	};
+
+// 	btn.addEventListener('click', function() {
+// 		if(data.length === 0) {
+// 			getData('https://66163e62b8b8e32ffc7ccc7b.mockapi.io/api/painting/styles')
+// 				.then(result => {
+// 					data = result;
+// 					createCards();
+// 				})
+// 				.catch(error => console.log(error));
+// 		} else {
+// 			createCards();
+// 		}
+// 	});
+// };
+
+// export default showMoreStyles;
 
 /***/ }),
 
@@ -688,8 +793,6 @@ const sliders = (slides, direction, prev, next) => {
       items[slideIndex - 1].classList.remove('slideInRight');
       items[slideIndex - 1].classList.add('slideInLeft');
     });
-    // items[slideIndex - 1].classList.remove('slideInLeft');
-    // items[slideIndex - 1].classList.add('slideInRight');
     nextBtn.addEventListener('click', () => {
       plusSlides(1);
       items[slideIndex - 1].classList.remove('slideInLeft');
@@ -740,6 +843,19 @@ const postData = async (url, data) => {
   });
   return await result.text();
 };
+
+// const postData = async (url, data) => {
+// 	const result = await fetch(url, {
+// 		method: "POST",
+// 		headers: {
+// 			'Content-type': 'application/json'
+// 		},
+// 		body: data
+// 	});
+
+// 	return await result.json();
+// };
+
 const getData = async url => {
   let result = await fetch(url);
   if (!result.ok) {
@@ -820,7 +936,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_mask__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/mask */ "./src/js/modules/mask.js");
 /* harmony import */ var _modules_checkTextInputs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/checkTextInputs */ "./src/js/modules/checkTextInputs.js");
 /* harmony import */ var _modules_showMoreStyles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/showMoreStyles */ "./src/js/modules/showMoreStyles.js");
-/* harmony import */ var _modules_calculater__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/calculater */ "./src/js/modules/calculater.js");
+/* harmony import */ var _modules_calculator__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/calculator */ "./src/js/modules/calculator.js");
 /* harmony import */ var _modules_filter__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/filter */ "./src/js/modules/filter.js");
 /* harmony import */ var _modules_pictureSize__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/pictureSize */ "./src/js/modules/pictureSize.js");
 /* harmony import */ var _modules_collaps__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/collaps */ "./src/js/modules/collaps.js");
@@ -850,8 +966,8 @@ window.addEventListener('DOMContentLoaded', () => {
   (0,_modules_mask__WEBPACK_IMPORTED_MODULE_3__["default"])('[name="phone"]');
   (0,_modules_checkTextInputs__WEBPACK_IMPORTED_MODULE_4__["default"])('[name="name"]');
   (0,_modules_checkTextInputs__WEBPACK_IMPORTED_MODULE_4__["default"])('[name="message"]');
-  (0,_modules_showMoreStyles__WEBPACK_IMPORTED_MODULE_5__["default"])('.button-styles', '#styles .row');
-  (0,_modules_calculater__WEBPACK_IMPORTED_MODULE_6__["default"])('#size', '#material', '#options', '.promocode', '.calc-price');
+  (0,_modules_showMoreStyles__WEBPACK_IMPORTED_MODULE_5__["default"])('.button-styles', '.cards-container');
+  (0,_modules_calculator__WEBPACK_IMPORTED_MODULE_6__["default"])('#size', '#material', '#options', '.promocode', '.calc-price');
   (0,_modules_filter__WEBPACK_IMPORTED_MODULE_7__["default"])();
   (0,_modules_pictureSize__WEBPACK_IMPORTED_MODULE_8__["default"])('.sizes-block');
   (0,_modules_collaps__WEBPACK_IMPORTED_MODULE_9__["default"])('.accordion-heading', '.accordion-block');
