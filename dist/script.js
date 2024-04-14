@@ -214,7 +214,6 @@ const filter = () => {
     no.style.display = 'none';
     no.classList.remove('animated', 'fadeIn');
     if (markType.length > 0) {
-      console.log('markType', markType);
       markType.forEach(mark => {
         mark.style.display = 'block';
         mark.classList.add('animated', 'fadeIn');
@@ -440,6 +439,7 @@ const modals = () => {
     const closer = document.querySelector(closerSelector);
     const modalWindows = document.querySelectorAll('[data-modal]');
     const scrollWidth = calculateScroll();
+    const gift = document.querySelector('.fixed-gift');
     trigger.forEach(item => {
       item.addEventListener('click', e => {
         if (e.target) {
@@ -456,6 +456,9 @@ const modals = () => {
         modal.style.display = "block";
         document.body.style.overflow = "hidden";
         document.body.style.marginRight = `${scrollWidth}px`;
+        if (gift) {
+          gift.style.right = `${parseInt(window.getComputedStyle(gift).getPropertyValue('right')) + scrollWidth}px`;
+        }
       });
     });
     closer.addEventListener('click', () => {
@@ -465,6 +468,7 @@ const modals = () => {
       modal.style.display = "none";
       document.body.style.overflow = "";
       document.body.style.marginRight = `0px`;
+      gift.style.right = "2rem";
     });
     modal.addEventListener('click', e => {
       if (e.target === modal) {
@@ -474,6 +478,7 @@ const modals = () => {
         modal.style.display = "none";
         document.body.style.overflow = "";
         document.body.style.marginRight = `0px`;
+        gift.style.right = "2rem";
       }
     });
   }

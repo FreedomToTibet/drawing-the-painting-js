@@ -15,7 +15,6 @@ const filter = () => {
     no.classList.remove('animated', 'fadeIn');
 
     if (markType.length > 0) {
-			console.log('markType', markType);
       markType.forEach((mark) => {
         mark.style.display = 'block';
         mark.classList.add('animated', 'fadeIn');

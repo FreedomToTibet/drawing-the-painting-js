@@ -1,29 +1,29 @@
 @import url('https://fonts.googleapis.com/css?family=Playfair+Display:700i&subset=cyrillic');
 @font-face {
   font-family: 'Circe Light';
-  src: url('../fonts/Circe-Light.eot');
-  src: url('../fonts/Circe-Light.eot?#iefix') format('embedded-opentype'), url('../fonts/Circe-Light.woff') format('woff'), url('../fonts/Circe-Light.ttf') format('truetype');
+  src: url('./../assets/fonts/Circe-Light.eot');
+  src: url('./../assets/fonts/Circe-Light.eot?#iefix') format('embedded-opentype'), url('./../assets/fonts/Circe-Light.woff') format('woff'), url('./../assets/fonts/Circe-Light.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'Circe Regular';
-  src: url('../fonts/Circe-Regular.eot');
-  src: url('../fonts/Circe-Regular.eot?#iefix') format('embedded-opentype'), url('../fonts/Circe-Regular.woff') format('woff'), url('../fonts/Circe-Regular.ttf') format('truetype');
+  src: url('./../assets/fonts/Circe-Regular.eot');
+  src: url('./../assets/fonts/Circe-Regular.eot?#iefix') format('embedded-opentype'), url('./../assets/fonts/Circe-Regular.woff') format('woff'), url('./../assets/fonts/Circe-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'Circe Bold';
-  src: url('../fonts/Circe-Bold.eot');
-  src: url('../fonts/Circe-Bold.eot?#iefix') format('embedded-opentype'), url('../fonts/Circe-Bold.woff') format('woff'), url('../fonts/Circe-Bold.ttf') format('truetype');
+  src: url('./../assets/fonts/Circe-Bold.eot');
+  src: url('./../assets/fonts/Circe-Bold.eot?#iefix') format('embedded-opentype'), url('./../assets/fonts/Circe-Bold.woff') format('woff'), url('./../assets/fonts/Circe-Bold.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'Circe Extra Bold';
-  src: url('../fonts/Circe-ExtraBold.eot');
-  src: url('../fonts/Circe-ExtraBold.eot?#iefix') format('embedded-opentype'), url('../fonts/Circe-ExtraBold.woff') format('woff'), url('../fonts/Circe-ExtraBold.ttf') format('truetype');
+  src: url('./../assets/fonts/Circe-ExtraBold.eot');
+  src: url('./../assets/fonts/Circe-ExtraBold.eot?#iefix') format('embedded-opentype'), url('./../assets/fonts/Circe-ExtraBold.woff') format('woff'), url('./../assets/fonts/Circe-ExtraBold.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -81,7 +81,7 @@ h4 {
 }
 .button-transparent:before {
   content: '';
-  background: url("../img/camera.svg") no-repeat center;
+  background: url("./../assets/img/camera.svg") no-repeat center;
   width: 1.6rem;
   height: 1.6rem;
   display: inline-block;
@@ -158,7 +158,7 @@ h4 {
 }
 .header-menu li a:after {
   content: '';
-  background-image: url("../img/down-arrow.svg");
+  background-image: url("../assets/img/down-arrow.svg");
   margin-left: 0.7rem;
   width: 1.2rem;
   height: 1rem;
@@ -266,7 +266,7 @@ h4 {
 }
 .main .file_upload > button:before {
   content: '';
-  background: url("../img/camera.svg") no-repeat center;
+  background: url("./../assets/img/camera.svg") no-repeat center;
   width: 1.6rem;
   height: 1.6rem;
   display: inline-block;
@@ -303,7 +303,7 @@ h4 {
 }
 .main .phone:before {
   content: '';
-  background: url("../img/24-hours.svg") no-repeat center;
+  background: url("./../assets/img/24-hours.svg") no-repeat center;
   width: 2.4rem;
   height: 2.4rem;
   display: inline-block;
@@ -517,7 +517,7 @@ h4 {
   margin-bottom: 6rem;
 }
 .styles .button-transparent:before {
-  background: url("../img/reload.svg") no-repeat center;
+  background: url("./../assets/img/reload.svg") no-repeat center;
   background-size: 100%;
   margin-right: 1rem;
 }
@@ -657,7 +657,7 @@ h4 {
 }
 .calc .file_upload > button:before {
   content: '';
-  background: url("../img/camera.svg") no-repeat center;
+  background: url("./../assets/img/camera.svg") no-repeat center;
   width: 1.6rem;
   height: 1.6rem;
   display: inline-block;
@@ -715,7 +715,7 @@ h4 {
   margin: 15rem 0;
 }
 .gift {
-  background: url('../img/gift-bg.jpg') no-repeat;
+  background: url('./../assets/img/gift-bg.jpg') no-repeat;
   background-size: cover;
   background-position-x: 60%;
 }
@@ -777,7 +777,7 @@ h4 {
 }
 .sizes {
   padding: 9rem 0 20rem 0;
-  background: url('../img/sizes-bg.jpg') no-repeat center;
+  background: url('./../assets/img/sizes-bg.jpg') no-repeat center;
   background-size: cover;
 }
 .sizes h2,
@@ -909,7 +909,7 @@ h4 {
 }
 .feedback-block .button-order:before {
   content: '';
-  background-image: url("../img/heart.png");
+  background-image: url("./../assets/img/heart.png");
   background-size: 100%;
   width: 2rem;
   height: 2rem;
@@ -957,10 +957,24 @@ h4 {
   margin-bottom: 4rem;
   margin-top: 2rem;
 }
+
+.often-questions .accordion-heading.active + .accordion-block {
+	display: block;
+}
+
 .often-questions .accordion-heading span {
   border-bottom: 2px dotted #333;
 }
+
+.often-questions p.active-style span {
+	color: #e950d7;
+	font-weight: 900;
+	text-decoration: none;
+	border: 0;
+}
+
 .often-questions .accordion-block {
+	display: none;
   margin-top: 1rem;
   background-color: #f7e7e6;
   padding: 3rem 4rem;

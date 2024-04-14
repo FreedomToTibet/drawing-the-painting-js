@@ -7,6 +7,7 @@ const modals = () => {
 		const closer = document.querySelector(closerSelector);
 		const modalWindows = document.querySelectorAll('[data-modal]');
 		const scrollWidth = calculateScroll();
+		const gift = document.querySelector('.fixed-gift');
 
 		trigger.forEach(item => {
 			item.addEventListener('click', (e) => {
@@ -24,6 +25,9 @@ const modals = () => {
 				modal.style.display = "block";
 				document.body.style.overflow = "hidden";
 				document.body.style.marginRight = `${scrollWidth}px`;
+				if(gift) {
+					gift.style.right = (`${parseInt(window.getComputedStyle(gift).getPropertyValue('right')) + scrollWidth}px`);
+				}
 			});
 		});
 
@@ -35,6 +39,7 @@ const modals = () => {
 			modal.style.display = "none";
 			document.body.style.overflow = "";
 			document.body.style.marginRight = `0px`;
+			gift.style.right = "2rem";
 		});
 
 		modal.addEventListener('click', (e) => {
@@ -46,6 +51,7 @@ const modals = () => {
 				modal.style.display = "none";
 				document.body.style.overflow = "";
 				document.body.style.marginRight = `0px`;
+				gift.style.right = "2rem";
 			}
 		});
 	}

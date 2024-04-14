@@ -14,7 +14,7 @@ const collaps = (triggerSelector, itemSelector) => {
 				});
 				this.classList.add('active', 'active-style');
 			} else {
-				this.classList.remove('active', 'active-style');
+					this.classList.remove('active', 'active-style');
 			};
 		});
 	});
