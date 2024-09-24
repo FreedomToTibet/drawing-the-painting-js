@@ -1,6 +1,6 @@
 ## Welcome to our drawing portrait website
 
-### Here, you can see:
+### Here you can see:
 - vertical and horizontal sliders;
 - lazy list element;
 - popup modal forms;
